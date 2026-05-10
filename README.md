@@ -1,2 +1,10 @@
-# Atividade-Pratica-SERVIDOR-HTTP
-Este é o repositório da Atividade Prática do grupo composto por Jussara Chicôma e Valquimar Santos. Com objetivo de criar um servidor HTTP que sirva arquivos estáticos HTML e CSS.
+# Meu Servidor Go - Arquivos Estáticos
+
+Projeto criado como atividade prática para aprender a criar um servidor HTTP em Go que serve arquivos HTML e CSS.
+
+
+## Estrutura Básica do Projeto
+
+meu-servidor-go/
+|---main.go             O servidor Go
+|---go.mod              Configuraçãoes do módulo Go
