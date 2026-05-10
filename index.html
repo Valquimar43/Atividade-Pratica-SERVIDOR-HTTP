@@ -1,0 +1,160 @@
+<!DOCTYPE html>  
+<html lang="pt-BR">  
+<head>  
+    <meta charset="UTF-8" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <title>Meu Servidor em Go - Jussara & Valquimar</title>  
+    <link rel="preconnect" href="https://fonts.googleapis.com">  
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sixtyfour:wght@700;800&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="css/style.css"/>  
+</head>  
+<body>  
+
+    <!-- Fundo animado com partículas -->  
+    <div class="bg-grid"></div>  
+    <div class="noise"></div>  
+
+    <main class="container">  
+
+        <!-- Cabeçalho -->  
+        <header class="hero">  
+            <div class="badge">GO + HTTP</div>  
+            <h1 class="titulo">  
+                <span class="linha1">Meu Primeiro</span>  
+                <span class="linha2">Servidor<em>.</em></span>  
+            </h1>  
+            <p class="subtitulo">  
+                Criado em <strong>Go</strong>, servindo arquivos <strong>HTML</strong> e <strong>CSS</strong> do zero.  
+            </p>  
+        </header>  
+
+        <!-- Cards de Tecnologia -->  
+        <section class="cards">  
+
+            <div class="card card--go">  
+                <div class="card__icon"></div>  
+                <h2>Go (Golang)</h2>  
+                <p>Linguagem criada pelo Google. Rápida, simples e poderosa para criar servidores web com poucas linhas de código.</p>  
+                <span class="tag">Servidor</span>  
+            </div>  
+
+            <div class="card card--html">  
+                <div class="card__icon"></div>  
+                <h2>HTML</h2>  
+                <p>A estrutura de toda página web. Define o conteúdo: títulos, textos, imagens, links e muito mais.</p>  
+                <span class="tag">Estrutura</span>  
+            </div>  
+
+            <div class="card card--css">  
+                <div class="card__icon"></div>  
+                <h2>CSS</h2>  
+                <p>Configuração utilizada para organizar o visual de páginas web. Cores, fontes, animações, layout - tudo que está vendo nesta página foi feito com CSS.</p>  
+                <span class="tag">Estilo</span>  
+            </div>  
+
+            <div class="card card--github">  
+                <div class="card__icon"></div>  
+                <h2>GitHub</h2>  
+                <p>Serve para armazenamento do seu código em nuvem. Permite versionar, compartilhar e colaborar em projetos de software.</p>  
+                <span class="tag">Versionamento</span>  
+            </div>  
+
+        </section>  
+        
+        <!-- Como funciona -->  
+        <section class="como-funciona">  
+            <h2 class="secao-titulo">Como funciona?</h2>  
+            <div class="fluxo">  
+                <div class="passo">  
+                    <div class="passo__num">01</div>  
+                    <div class="passo__texto">  
+                        <strong>Você roda o servidor Go</strong>  
+                        <span>com o comando <code>go run main.go</code></span>  
+                    </div>  
+                </div>  
+                <div class="seta">→</div>  
+                <div class="passo">  
+                    <div class="passo__num">02</div>  
+                    <div class="passo__texto">  
+                        <strong>Go escuta na porta 8080</strong>  
+                        <span>aguardando conexão do navegador</span>  
+                    </div>  
+                </div>  
+                <div class="seta">→</div>  
+                <div class="passo">  
+                    <div class="passo__num">03</div>  
+                    <div class="passo__texto">  
+                        <strong>Navegador recebe os arquivos</strong>  
+                        <span>e renderiza o HTML + CSS para você</span>  
+                    </div>  
+                </div>  
+            </div>  
+        </section> 
+        <!-- SEÇÃO DE GERENCIAMENTO DE USUÁRIOS -->
+        <section class="secao-usuarios">
+            <h2 class="secao-titulo">👥 Gerenciar Usuários</h2>
+
+            <!-- Formulário de cadastro -->
+            <div class="form-container">
+                <h3 id="form-titulo">Cadastrar Usuário</h3>
+                <form id="form-usuario">
+                    <input type="hidden" id="usuario-id">
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="username">Nome de usuário</label>
+                            <input type="text" id="username" placeholder="Ex: valquimar" required>
+                        </div>
+                        <div class="campo">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" placeholder="email@exemplo.com" required>
+                        </div>
+                        <div class="campo">
+                            <label for="born_date">Data de Nascimento</label>
+                            <input type="date" id="born_date">
+                        </div>
+                        <div class="campo">
+                            <label for="password">Senha</label>
+                            <input type="password" id="password" placeholder="******">
+                        </div>
+                    </div>
+                    <div class="form-acoes">
+                        <button type="submit" class="btn btn-salvar">💾 Salvar</button>
+                        <button type="button" class="btn btn-cancelar" onclick="cancelarEdicao()" style="display:none;">❌ Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tabela de usuários -->
+            <div class="tabela-container">
+                <h3>Usuários Cadastrados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuário</th>
+                            <th>E-mail</th>
+                            <th>Data de Nasc.</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-usuarios">
+                        <tr><td colspan="5">Carregando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    <!-- Rodapé -->
+     <footer class="rodape">
+        <p>Feito por Jussara e Valquimar em Go. <span id="ano"></span></p>
+     </footer>
+
+     </main>
+
+    <script>
+        //Atualiza o ano automaticamente na nota do rodapé
+        document.getElementById('ano').textContent = new Date().getFullYear();
+    </script>
+
+    </body>
+    </html>
