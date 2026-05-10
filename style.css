@@ -1,0 +1,314 @@
+/* ============================
+        CONFIGURAÇÃO DO RESET & VARIÁVEIS
+    ========================*/
+    :root {
+        --preto:    #0a0a0f;
+        --escuro:   #111118;
+        --card-bg:  #16161f;
+        --borda:    #2a2a38;
+        --texto:    #e8e8f0;
+        --muted:    #7a7a9a;
+        --go-cyan:  #00d4c8;
+        --go-azul:  #00aeff;
+        --html-laranja: #ff6b35;
+        --css-roxo:     #9b59f5;
+        --github-verde: #3dd68c;
+
+        --fonte-display:    'Syne', sans-serif;
+        --fonte-mono:       'Space Mono', monospace;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        background-color: var(--preto);
+        color: var(--texto);
+        font-family: var(--fonte-mono);
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /*============================
+        CONFIGURAÇÃO DO FUNDO COM GRID E RUÍDO
+    ============================*/
+    .bg-grid {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background-image:
+        linear-gradient(var(--borda) 1px, transparent 1px),
+        linear-gradient(90deg, var(--borda) 1px, transparent 1px);
+        background-size: 48px 48px;
+        opacity: 0.35;
+        pointer-events: none;
+    }
+
+    .noise {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 200px;        
+        pointer-events: none;
+    }
+
+    /*============================
+        CONFIGURAÇÃO DO CONTAINER
+    ============================*/
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+}
+
+/*============================
+    CONFIGURAÇÃO DO HERO / CABEÇALHO
+    ============================*/
+    .hero {
+        margin-bottom: 4rem;
+        animation: fadeUp 0.7s ease both;
+    }
+
+    .badge {
+        display: inline-block;
+        font-family: var(--fonte-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        color: var(--go-cyan);
+        border: 1px solid var(--go-cyan);
+        border-radius: 99px;
+        padding: 0.3em 1em;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .titulo {
+        font-family: var(--fonte-display);
+        font-weight: 800;
+        line-height: 1.0;
+        margin-bottom: 1.2rem;
+    }
+
+    .linha1 {
+        display: block;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        color: var(--muted);
+    }
+
+    .linha2 {
+        display: block;
+        font-size: clamp(3.5rem, 11vw, 7rem);
+        color: var(--texto);
+        letter-spacing: -0.03em;
+    }
+
+    .linha2 em {
+        font-style: normal;
+        color: var(--go-cyan);
+    }
+
+    .subtitulo {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 460px;
+    }
+
+    .subtitulo strong {
+        color: var(--texto);
+    }
+
+/*============================
+        CONFIGURAÇÃO DOS CARDS
+    ============================*/
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.2rem;
+        margin-bottom: 4rem;
+    }
+
+    .card {
+        background: var(--card-bg);
+        border: 1px solid var(--borda);
+        border-radius: 16px;
+        padding: 1.8rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        animation: fadeUp 0.7s ease both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+
+    /*Configuração do brilho no canto SUPERIOR*/
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 2px;
+        border-radius: 16px 16px 0 0;
+        opacity: 0.8;
+    }
+
+    .card--go::before   { background: var(--go-cyan); }
+    .card--html::before   { background: var(--html-laranja); }
+    .card--css::before   { background: var(--css-roxo); }
+    .card--github::before   { background: var(--github-verde); }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.card--go:hover    { border-color: var(--go-cyan);      box-shadow: 0 8px 32px color-mix(in srgb, var(--go-cyan) 20%, transparent); }
+.card--html:hover  { border-color: var(--html-laranja); box-shadow: 0 8px 32px color-mix(in srgb, var(--html-laranja) 20%, transparent); }
+.card--css:hover   { border-color: var(--css-roxo);     box-shadow: 0 8px 32px color-mix(in srgb, var(--css-roxo) 20%, transparent); }
+.card--github:hover{ border-color: var(--github-verde); box-shadow: 0 8px 32px color-mix(in srgb, var(--github-verde) 20%, transparent); }
+
+.card__icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.card h2 {
+    font-family: var(--fonte-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.card p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+.tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--borda);
+    border-radius: 99px;
+    padding: 0.2em 0.8em;
+}
+
+/* ============================
+        CONFIGURAÇÃO DO COMO FUNCIONA
+    ========================*/
+.como-funciona {
+    margin-bottom: 4rem;
+    animation: fadeUp 0.7s 0.5s ease both;
+}
+
+.secao-titulo {
+    font-family: var(--fonte-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--texto);
+}
+
+.fluxo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.passo {
+    flex: 1px;
+    min-width: 180px;
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 1.4rem 1.2rem;
+}
+
+.passo__num {
+    font-family: var(--fonte-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--go-cyan);
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+
+.passo__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.passo__texto__strong {
+    font-size: 0.85rem;
+    color: var(--texto);
+}
+
+.passo__texto span {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+code {
+    font-family: var(--fonte-mono);
+    background: var(--borda);
+    color: var(--go-cyan);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.seta {
+    font-size: 1.5rem;
+    color: var(--muted);
+    flex-shrink: 0;
+}
+
+/* ============================
+        CONFIGURAÇÃO DO RODAPÉ
+    ========================*/
+.rodape {
+    border-top: 1px solid var(--borda);
+    padding-top: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    animation: fadeUp 0.7s 0.6s ease both;
+}
+
+/* ============================
+        CONFIGURAÇÃO DAS ANIMAÇÕES
+    ========================*/
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translate(0);
+        }
+    }
+
+    /* ============================
+        RESPONSIVO
+    ========================*/
+    @media (max-width: 600px) {
+        .fluxo { flex-direction: column; }
+        .seta { transform: rotate(90deg);}
+    }
